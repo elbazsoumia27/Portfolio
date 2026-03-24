@@ -1,0 +1,10 @@
+# YAML configuration file
+# Add your settings below
+
+app:
+  name: Portfolio
+  version: 1.0.0
+
+settings:
+  theme: dark
+  language: en-US
