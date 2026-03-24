@@ -1,4 +1,4 @@
-name: Test Deploy
+name: Build and Test
 
 on:
   push:
@@ -18,10 +18,3 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm test
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - name: Deploy placeholder
-        run: echo "Deploy step would run here"
