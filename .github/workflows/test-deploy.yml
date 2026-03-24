@@ -1,0 +1,16 @@
+name: Test HTML Portfolio
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: List project files
+        run: ls -R
+      - name: Say Hello
+        run: echo "Hello GitHub Actions "
