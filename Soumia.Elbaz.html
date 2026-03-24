@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soumia El Baz - Développeuse Full-stack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #1a2a6c;
+      --secondary-color: #ffffff;
+      --text-dark: #1a1a1a;
+      --text-light: #666666;
+      --bg-light: #f5f5f5;
+      --bg-white: #ffffff;
+      --accent-green: #25D366;
+      --accent-blue: #0084ff;
+      --shadow: 0 4px 15px rgba(26, 42, 108, 0.1);
+      --shadow-hover: 0 8px 25px rgba(26, 42, 108, 0.2);
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-light);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-color);
+      opacity: 0.8;
+    }
+
+    /* Header Navigation */
+    header {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #2d3e8f 100%);
+      color: var(--secondary-color);
+      padding: 60px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(20px);
+      }
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-content h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
+    }
+
+    .header-content .title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      opacity: 0.95;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .contact-info a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-info a:hover {
+      opacity: 0.8;
+      transform: translateY(-2px);
+    }
+
+    /* Container & Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-green));
+      border-radius: 2px;
+    }
+
+    /* Card Styling */
+    .card {
+      background: var(--bg-white);
+      border: none;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-green));
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* About Section */
+    .about-card {
+      background: var(--bg-white);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .about-card p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* Buttons */
+    .button-group {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      padding: 15px 40px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-whatsapp {
+      background-color: var(--accent-green);
+      color: white;
+    }
+
+    .btn-whatsapp:hover {
+      background-color: #1fb745;
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-email {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .btn-email:hover {
+      background-color: #2d3e8f;
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(26, 42, 108, 0.3);
+    }
+
+    .btn-project {
+      background: linear-gradient(135deg, var(--primary-color), #2d3e8f);
+      color: white;
+      text-decoration: none;
+      padding: 12px 25px;
+      font-size: 0.9rem;
+    }
+
+    .btn-project:hover {
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Education Grid */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .education-item {
+      background: var(--bg-white);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border-left: 5px solid var(--primary-color);
+    }
+
+    .education-item:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .education-item h3 {
+      color: var(--primary-color);
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .education-item .institution {
+      color: var(--accent-green);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .education-item .date {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .education-item .date::before {
+      content: '📅';
+    }
+
+    .education-item p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Experience Grid */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .experience-item {
+      background: var(--bg-white);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border-left: 5px solid var(--accent-blue);
+    }
+
+    .experience-item:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .experience-item h3 {
+      color: var(--primary-color);
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .experience-item .date {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .experience-item .date::before {
+      content: '📅';
+    }
+
+    .experience-item p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .skill-category {
+      background: var(--bg-white);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .skill-category:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .skill-category h3 {
+      color: var(--primary-color);
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+
+    .skill-item {
+      margin-bottom: 15px;
+    }
+
+    .skill-item strong {
+      display: block;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .skill-item .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: linear-gradient(135deg, var(--primary-color), #2d3e8f);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: var(--bg-white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-15px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary-color), #2d3e8f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-image::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .project-content {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-content h3 {
+      color: var(--primary-color);
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .project-date {
+      color: var(--accent-green);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .project-description {
+      color: var(--text-light);
+      margin-bottom: 20px;
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tech-tag {
+      background: var(--bg-light);
+      color: var(--primary-color);
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .project-features {
+      margin-bottom: 20px;
+    }
+
+    .project-features h4 {
+      color: var(--primary-color);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .project-features ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .project-features li {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      padding-left: 20px;
+      margin-bottom: 5px;
+      position: relative;
+    }
+
+    .project-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent-green);
+      font-weight: bold;
+    }
+
+    .project-link {
+      align-self: flex-start;
+    }
+
+    /* Languages Section */
+    .languages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+    }
+
+    .language-item {
+      background: var(--bg-white);
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .language-item:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .language-item .flag {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .language-item h3 {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .language-item p {
+      color: var(--text-light);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* Soft Skills Section */
+    .soft-skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .soft-skill-item {
+      background: linear-gradient(135deg, var(--primary-color), #2d3e8f);
+      color: white;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .soft-skill-item:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .soft-skill-item .icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .soft-skill-item p {
+      font-weight: 600;
+      margin: 0;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary-color);
+      color: var(--secondary-color);
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+
+    footer p {
+      margin: 0;
+      font-weight: 500;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-content h1 {
+        font-size: 2rem;
+      }
+
+      .header-content .title {
+        font-size: 1.2rem;
+      }
+
+      .contact-info {
+        gap: 20px;
+        font-size: 0.85rem;
+      }
+
+      section h2 {
+        font-size: 1.8rem;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .about-card {
+        padding: 25px;
+      }
+
+      .button-group {
+        gap: 15px;
+      }
+
+      .btn {
+        padding: 12px 30px;
+        font-size: 0.9rem;
+      }
+
+      .education-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .languages-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-content h1 {
+        font-size: 1.5rem;
+      }
+
+      .header-content .title {
+        font-size: 1rem;
+      }
+
+      header {
+        padding: 40px 15px;
+      }
+
+      .contact-info {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+      }
+
+      .button-group {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+      }
+
+      .skill-item .tags {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Soumia El Baz</h1>
+      <p class="title">Développeuse Full-stack</p>
+      <div class="button-group">
+        <a href="https://wa.me/212633075976" class="btn btn-whatsapp" target="_blank">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="mailto:Soumia.so770717@gmail.com" class="btn btn-email">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+      </div>
+      <div class="contact-info">
+        <a href="tel:+212633075976">
+          <i class="fas fa-phone"></i> +212 633075976
+        </a>
+        <a href="mailto:Soumia.so770717@gmail.com">
+          <i class="fas fa-envelope"></i> Soumia.so770717@gmail.com
+        </a>
+        <span><i class="fas fa-map-marker-alt"></i> Salé, Maroc</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- About Section -->
+    <section>
+      <div class="about-card">
+        <h2>About Me</h2>
+        <p>
+          Je suis une développeuse front-end junior, passionnée par les nouvelles technologies et l'innovation. 
+          J'ai un diplôme en développement web et je maîtrise Python, HTML, CSS, Bootstrap, JavaScript, PHP, et MySQL. 
+          Je suis motivée à élargir mes compétences, notamment en design UI/UX et en intelligence artificielle, 
+          afin de contribuer à des projets modernes et créatifs.
+        </p>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section>
+      <h2>🏢 Expérience Professionnelle</h2>
+      <div class="experience-grid">
+        <div class="experience-item">
+          <div class="date">Oct 2025 – Dec 2025</div>
+          <h3>Stage – RSK</h3>
+          <p>Développé une application de Gestion de Congés.</p>
+        </div>
+        <div class="experience-item">
+          <div class="date">Feb 2026</div>
+          <h3>Stage – World Wide Progress</h3>
+          <p>Automatisation des publications LinkedIn via n8n.<br>
+             Synchronisation Outlook → OneDrive avec Power Automate (classement automatique).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section>
+      <h2>🎓 Education</h2>
+      <div class="education-grid">
+        <div class="education-item">
+          <div class="date">2025 – 2026 (En cours)</div>
+          <h3>Formation Qualifiante en Intelligence Artificielle</h3>
+          <p class="institution">Incubateur Digital Solidaire Salé</p>
+          <p>Specialization in AI technologies and applications.</p>
+        </div>
+
+        <div class="education-item">
+          <div class="date">2024 – 2025</div>
+          <h3>Diplôme en Développement Web</h3>
+          <p class="institution">Centre Ameur Salé</p>
+          <p>Comprehensive training in full-stack web development with focus on modern technologies.</p>
+        </div>
+
+        <div class="education-item">
+          <div class="date">2022 – 2024</div>
+          <h3>Études Universitaires - Licence</h3>
+          <p class="institution">Université Mohammed V – Rabat</p>
+          <p>Langue et Littérature Anglaise (2 années)</p>
+        </div>
+
+        <div class="education-item">
+          <div class="date">2021 – 2022</div>
+          <h3>Baccalauréat</h3>
+          <p class="institution">Mention Bien</p>
+          <p>Lettres modernes - Secondary education diploma.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section>
+      <h2>💼 Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>� Programming & Web</h3>
+          <div class="skill-item">
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">Bootstrap</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">PHP</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">React</span>
+            </div>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>🛠️ Tools & Platforms</h3>
+          <div class="skill-item">
+            <div class="tags">
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">Data Analysis</span>
+              <span class="tag">Microsoft Office</span>
+              <span class="tag">Access</span>
+            </div>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>🤖 Automation</h3>
+          <div class="skill-item">
+            <div class="tags">
+              <span class="tag">n8n</span>
+              <span class="tag">Power Automate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Soft Skills Section -->
+    <section>
+      <h2>⭐ Soft Skills</h2>
+      <div class="soft-skills-container">
+        <div class="soft-skill-item">
+          <div class="icon">👥</div>
+          <p>Travail en Équipe & Communication</p>
+        </div>
+        <div class="soft-skill-item">
+          <div class="icon">🧩</div>
+          <p>Résolution de Problèmes</p>
+        </div>
+        <div class="soft-skill-item">
+          <div class="icon">🔄</div>
+          <p>Adaptabilité</p>
+        </div>
+        <div class="soft-skill-item">
+          <div class="icon">🚀</div>
+          <p>Apprentissage Continu</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section>
+      <h2> Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image"></div>
+          <div class="project-content">
+            <h3>Shems'yBot - Conversation</h3>
+            <p class="project-date"> Juillet 2025 (Projet Personnel)</p>
+            
+            <p class="project-description">
+              Un chatbot interactif et innovant intégrant des fonctionnalités avancées de traitement de contenu multimedia.
+            </p>
+
+            <div class="project-tech">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">Bootstrap</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+
+            <div class="project-features">
+              <h4>Fonctionnalités Principales:</h4>
+              <ul>
+                <li>Chat textuel et vocal</li>
+                <li>API externe pour conversion vocale</li>
+                <li>Téléchargement et analyse de fichiers/images</li>
+                <li>Interface responsive et fluide</li>
+                <li>Résumé automatique de contenu</li>
+                <li>Intégration facile dans tout site web</li>
+              </ul>
+            </div>
+
+            <a href="https://shemsybot.vercel.app/" class="btn btn-project" target="_blank">
+              <i class="fas fa-external-link-alt"></i> Visit Project
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section>
+      <h2> Languages</h2>
+      <div class="languages-grid">
+        <div class="language-item">
+          <div class="flag">🇸🇦</div>
+          <h3>Arabe</h3>
+          <p>Langue Maternelle</p>
+        </div>
+        <div class="language-item">
+          <div class="flag">🇬🇧</div>
+          <h3>Anglais</h3>
+          <p>Bien</p>
+        </div>
+        <div class="language-item">
+          <div class="flag">🇫🇷</div>
+          <h3>Français</h3>
+          <p>Niveau Intermédiaire</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Soumia El Baz. Tous droits réservés. | Développeuse Full-stack</p>
+  </footer>
+</body>
+</html>
